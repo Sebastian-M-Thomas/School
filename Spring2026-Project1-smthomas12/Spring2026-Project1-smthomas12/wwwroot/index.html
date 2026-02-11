@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>One Piece</title>
+
+        <link rel="stylesheet" href="/css/site.css" />
+        <script src="/js/site.js" defer></script>
+    </head>
+
+</head>
+
+<body>
+
+    <div id="container">
+
+        <h1 id="Title">One Piece</h1>
+
+        <img id="CoverArt"
+             src="CoverArt.png"
+             alt="One Piece cover art">
+
+        <h5 id="Rating">IMDB Rating: 9 / 10</h5>
+
+        <iframe id="Trailer"
+                src="https://www.youtube.com/embed/bg9qC7wT6QA"
+                title="One Piece Elbaph Trailer"
+                allowfullscreen>
+        </iframe>
+
+        <p id="Summary">
+            Monkey D. Luffy, a pirate with rubber powers, forms the Straw Hat crew and sails the Grand Line, battling rivals and the World Government on a quest for the legendary treasure One Piece and the title of Pirate King.
+        </p>
+
+        <a href="https://www.imdb.com/title/tt0388629/" target="_blank">
+            Click here to view One Piece on IMDB
+        </a>
+
+        <h3>Main Actors</h3>
+        <ul id="Actors">
+            <li>Colleen Clinkenbeard (Monkey D. Luffy)</li>
+            <li>Christopher Sabat (Roranoa Zoro)</li>
+            <li>Luci Christian (Nami)</li>
+            <li>Sonny Strait (Usopp)</li>
+            <li>Eric Vale (Sanji)</li>
+        </ul>
+
+        <h3>Click a Character below for description</h3>
+
+        <img src="luffy.png"
+             class="character"
+             onclick="showCharacter('luffy')">
+
+        <img src="zoro.png"
+             class="character"
+             onclick="showCharacter('zoro')">
+
+        <img src="nami.png"
+             class="character"
+             onclick="showCharacter('nami')">
+
+        <img src="usopp.png"
+             class="character"
+             onclick="showCharacter('usopp')">
+
+        <img src="Sanji.png"
+             class="character"
+             onclick="showCharacter('sanji')">
+
+
+        <div id="characterInfo"></div>
+
+
+    </div>
+
+    </div>
+
+</body>
+</html>

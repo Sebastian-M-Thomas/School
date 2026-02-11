@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ActiveDebugProfile>https</ActiveDebugProfile>
+    <NameOfLastUsedPublishProfile>C:\CS330\Projects\Spring2026-Project1-smthomas12\Spring2026-Project1-smthomas12\Properties\PublishProfiles\Spring2026-Project1-smthomas12-AppService - Web Deploy2.pubxml</NameOfLastUsedPublishProfile>
+  </PropertyGroup>
+</Project>
