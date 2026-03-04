@@ -1,0 +1,444 @@
+﻿
+
+:root {
+    --imperial-red: #cc0000;
+    --saber-blue: #4fc3f7;
+    --saber-glow: #0288d1;
+    --gold: #ffe81f; /* Classic Star Wars yellow */
+    --dark-space: #080c14;
+    --panel-bg: rgba(5, 10, 20, 0.82);
+    --text-primary: #e8f4fd;
+    --text-dim: #8ab4cc;
+    --border-glow: rgba(79, 195, 247, 0.45);
+}
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Rajdhani', sans-serif;
+    background-image: url('../Images/DeathStar.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: var(--text-primary);
+    transition: background-image 0.8s ease;
+}
+
+/* ── Layout ───────────────────────────────────────────────── */
+.page {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.container {
+    width: 88vw;
+    max-width: 1400px;
+    min-height: 70vh;
+    background: var(--panel-bg);
+    border-radius: 4px;
+    border: 1px solid var(--border-glow);
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 40px rgba(79, 195, 247, 0.12), 0 0 120px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(79, 195, 247, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── Crawl Stripe Accents ─────────────────────────────────── */
+.crawl-stripe {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--imperial-red) 20%, var(--gold) 50%, var(--saber-blue) 80%, transparent );
+    margin-bottom: 10px;
+    animation: crawlShift 6s linear infinite;
+}
+
+    .crawl-stripe.bottom {
+        margin-bottom: 0;
+        margin-top: 36px;
+    }
+
+@keyframes crawlShift {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+
+
+/* ── Title ────────────────────────────────────────────────── */
+.title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 68px;
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-shadow: 0 0 8px rgba(255, 232, 31, 0.8), 0 0 20px rgba(255, 200, 0, 0.6), 0 0 40px rgba(204, 0, 0, 0.4), 0 0 80px rgba(204, 0, 0, 0.2);
+    margin: 0 0 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+    text-align: center;
+}
+
+    .title:hover {
+        transform: scale(1.04);
+        text-shadow: 0 0 12px rgba(255, 232, 31, 1), 0 0 30px rgba(255, 200, 0, 0.9), 0 0 60px rgba(204, 0, 0, 0.7), 0 0 100px rgba(79, 195, 247, 0.3);
+    }
+
+/* ── Subtitle ─────────────────────────────────────────────── */
+.subtitle {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin: 0 0 30px;
+}
+
+/* ── Search Box ───────────────────────────────────────────── */
+.searchBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 60%;
+    max-width: 580px;
+    min-width: 280px;
+    display: flex; 
+    align-items: center; 
+    gap: 10px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.searchBox input {
+    width: 100%;
+    padding: 14px 20px 14px 46px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    border: 1px solid rgba(79, 195, 247, 0.5);
+    outline: none;
+    background: rgba(8, 20, 40, 0.9);
+    color: var(--text-primary);
+    box-shadow: 0 0 10px rgba(79, 195, 247, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.25s ease;
+}
+
+    .searchBox input::placeholder {
+        color: var(--text-dim);
+    }
+
+    .searchBox input:focus,
+    .searchBox input:hover {
+        border-color: var(--saber-blue);
+        box-shadow: 0 0 20px rgba(79, 195, 247, 0.5), 0 0 40px rgba(79, 195, 247, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.4);
+        background: rgba(8, 25, 50, 0.95);
+    }
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+    .buttons button {
+        padding: 11px 22px;
+        border-radius: 2px;
+        border: 1px solid rgba(79, 195, 247, 0.4);
+        background: linear-gradient(180deg, rgba(20, 50, 80, 0.9), rgba(8, 20, 40, 0.95) );
+        color: var(--saber-blue);
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 700;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        box-shadow: 0 0 8px rgba(79, 195, 247, 0.15), inset 0 1px 0 rgba(79, 195, 247, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+.btn-icon {
+    font-size: 14px;
+}
+
+.buttons button:hover {
+    border-color: var(--saber-blue);
+    color: white;
+    background: linear-gradient(180deg, rgba(30, 80, 130, 0.9), rgba(15, 40, 70, 0.95) );
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(79, 195, 247, 0.5), 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(79, 195, 247, 0.2);
+}
+
+/* ── Feel the Force Button ─────────── */
+#legendaryBtn {
+    border-color: rgba(204, 0, 0, 0.7);
+    color: #ff4444;
+    background: linear-gradient(180deg, rgba(60, 5, 5, 0.9), rgba(25, 0, 0, 0.95) );
+    box-shadow: 0 0 15px rgba(204, 0, 0, 0.3), 0 0 30px rgba(204, 0, 0, 0.1), inset 0 1px 0 rgba(204, 0, 0, 0.2);
+    
+}
+
+    #legendaryBtn:hover {
+        border-color: #ff4444;
+        color: white;
+        background: linear-gradient(180deg, rgba(100, 10, 10, 0.9), rgba(50, 5, 5, 0.95) );
+        transform: translateY(-2px);
+        box-shadow: 0 0 30px rgba(204, 0, 0, 0.7), 0 0 60px rgba(204, 0, 0, 0.3), 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+#searchBtn {
+    white-space: nowrap;
+    flex-shrink: 0;
+    border-color: rgba(255, 232, 31, 0.4);
+    color: var(--gold);
+    background: linear-gradient(180deg, rgba(50, 40, 0, 0.9), rgba(20, 15, 0, 0.95) );
+    padding: 14px 22px; 
+    height: 100%; 
+}
+
+#searchBtn:hover {
+    border-color: var(--gold);
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 232, 31, 0.5);
+}
+
+
+/* ── Time Display ─────────────────────────────────────────── */
+#time {
+    margin-top: 25px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    letter-spacing: 3px;
+    color: var(--saber-blue);
+    text-shadow: 0 0 10px rgba(79, 195, 247, 0.7);
+    display: none;
+    text-align: center;
+}
+
+/* ── Search Results ───────────────────────────────────────── */
+#searchResults {
+    margin-top: 30px;
+    font-size: 16px;
+    width: 92%;
+    display: none;
+    text-align: left;
+    line-height: 1.6;
+}
+
+/* Knowledge Graph */
+.kg-box {
+    background: rgba(5, 20, 40, 0.8);
+    border: 1px solid rgba(255, 232, 31, 0.35);
+    border-left: 3px solid var(--gold);
+    border-radius: 2px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(255, 232, 31, 0.08);
+}
+
+    .kg-box h2 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 11px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin: 0 0 10px;
+    }
+
+    .kg-box h3 {
+        font-size: 20px;
+        color: var(--text-primary);
+        margin: 0 0 8px;
+    }
+
+    .kg-box p {
+        color: var(--text-dim);
+        margin: 0;
+    }
+
+.kg-img {
+    max-width: 200px;
+    border-radius: 2px;
+    margin-top: 12px;
+    border: 1px solid var(--border-glow);
+}
+
+/* Organic Results */
+.organic-box {
+    background: rgba(5, 15, 30, 0.75);
+    border: 1px solid var(--border-glow);
+    border-radius: 2px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+}
+
+    .organic-box h2 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 11px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--saber-blue);
+        margin: 0 0 16px;
+    }
+
+.search-item {
+    border-bottom: 1px solid rgba(79, 195, 247, 0.1);
+    padding: 12px 0;
+}
+
+    .search-item:last-child {
+        border-bottom: none;
+    }
+
+    .search-item h3 {
+        margin: 0 0 4px;
+        font-size: 17px;
+    }
+
+        .search-item h3 a {
+            color: var(--saber-blue);
+            text-decoration: none;
+            transition: color 0.2s, text-shadow 0.2s;
+        }
+
+            .search-item h3 a:hover {
+                color: white;
+                text-shadow: 0 0 10px rgba(79, 195, 247, 0.8);
+            }
+
+    .search-item p {
+        color: var(--text-dim);
+        margin: 0;
+        font-size: 14px;
+    }
+
+/* People Also Ask */
+.paa-box {
+    background: rgba(5, 20, 40, 0.75);
+    border: 1px solid rgba(204, 0, 0, 0.25);
+    border-left: 3px solid var(--imperial-red);
+    border-radius: 2px;
+    padding: 18px 24px;
+    margin-bottom: 20px;
+}
+
+    .paa-box h2 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 11px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: #ff5555;
+        margin: 0 0 10px;
+    }
+
+    .paa-box p {
+        color: var(--text-dim);
+        margin: 4px 0;
+    }
+
+.paa-link {
+    cursor: pointer;
+    color: #ff5555;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+    .paa-link:hover {
+        color: white;
+        text-shadow: 0 0 10px rgba(204, 0, 0, 0.8);
+    }
+
+/* Related Searches */
+.related-box {
+    background: rgba(5, 20, 40, 0.75);
+    border: 1px solid rgba(79, 195, 247, 0.2);
+    border-radius: 2px;
+    padding: 18px 24px;
+    margin-bottom: 20px;
+}
+
+    .related-box h2 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 11px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--saber-blue);
+        margin: 0 0 10px;
+    }
+
+    .related-box p {
+        color: var(--text-dim);
+        margin: 4px 0;
+    }
+
+.related-link {
+    cursor: pointer;
+    color: var(--saber-blue);
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+    .related-link:hover {
+        color: white;
+        text-shadow: 0 0 10px rgba(79, 195, 247, 0.8);
+    }
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+    .title {
+        font-size: 38px;
+        letter-spacing: 3px;
+    }
+
+    .container {
+        padding: 20px 36px;
+    }
+
+    .search-wrapper {
+        width: 95%;
+    }
+
+    .buttons button {
+        font-size: 10px;
+        padding: 10px 14px;
+    }
+}

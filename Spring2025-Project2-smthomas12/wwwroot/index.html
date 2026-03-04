@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GalacticSearch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+    <!-- jQuery & jQuery UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="bgm" loop>
+        <source src="/Audio/ImperialMarch.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <div class="page">
+        <div class="container">
+            <!-- Crawl stripe accent -->
+            <div class="crawl-stripe"></div>
+
+            <h1 class="title" id="siteTitle">GalacticSearch</h1>
+            <p class="subtitle">Search across the galaxy far, far away...</p>
+
+            <div class="searchBox">
+                <div class="search-wrapper">
+                    <span class="search-icon"></span>
+                    <input type="text" id="query" placeholder="Search the galaxy...">
+                    <button id="searchBtn"> Search</button>
+                </div>
+                <div class="buttons">
+                    
+                    </button>
+                    <button id="luckyBtn">
+                        <span class="btn-icon"></span> I'm Feeling Lucky
+                    </button>
+                    <button id="timeBtn">
+                        <span class="btn-icon"></span> Time
+                    </button>
+                    <button id="legendaryBtn">
+                        <span class="btn-icon"></span> Feel the Force
+                    </button>
+                </div>
+            </div>
+
+            <div id="time"></div>
+            <div id="searchResults"></div>
+
+            <div class="crawl-stripe bottom"></div>
+        </div>
+    </div>
+
+    
+    <script src="js/site.js"></script>
+</body>
+</html>
