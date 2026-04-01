@@ -1,0 +1,38 @@
+﻿@model Spring2026_Project3_smthomas12.Models.ActorMovie
+
+@{
+    ViewData["Title"] = "Manifest Entry";
+}
+
+<div class="mb-3">
+    <a asp-action="Index" class="btn btn-secondary">← Back to Manifest</a>
+</div>
+
+<div class="parchment mx-auto" style="max-width: 600px;">
+    <h2>📜 Manifest Entry</h2>
+    <hr style="border-color: var(--wood-mid);" />
+
+    <div class="row g-3">
+        <div class="col-6">
+            <p class="form-label">⚓ Sailor (Actor)</p>
+            <p style="font-family: var(--font-accent); font-size: 1.2rem; color: var(--ink);">
+                <strong>@Model.Actor.Name</strong>
+            </p>
+        </div>
+        <div class="col-6">
+            <p class="form-label">🎬 Ship (Movie)</p>
+            <p style="font-family: var(--font-accent); font-size: 1.2rem; color: var(--ink);">
+                <strong>@Model.Movie.Title (@Model.Movie.Year)</strong>
+            </p>
+        </div>
+    </div>
+
+    <hr style="border-color: var(--wood-mid);" />
+
+    <div class="d-flex gap-2">
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+            🗑️ Remove from Manifest
+        </a>
+        <a asp-action="Index" class="btn btn-secondary">← Back</a>
+    </div>
+</div>

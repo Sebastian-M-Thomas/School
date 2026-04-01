@@ -1,0 +1,36 @@
+﻿@model Spring2026_Project3_smthomas12.Models.Movie
+
+@{
+    ViewData["Title"] = "Delete " + Model.Title;
+}
+
+<div class="mb-3">
+    <a asp-action="Index" class="btn btn-secondary">← Back to Treasure Chest</a>
+</div>
+
+<div class="parchment mx-auto" style="max-width: 600px; border: 2px solid var(--blood-red);">
+    <h2 style="color: var(--blood-red);">🗑️ Walk the Plank?</h2>
+    <hr style="border-color: var(--blood-red);" />
+
+    <p style="font-family: var(--font-accent); font-size: 1.1rem;">
+        Are ye sure ye want to send <strong>@Model.Title</strong> to Davy Jones' locker?
+        This cannot be undone, and all crew assignments will be lost!
+    </p>
+
+    <div class="card mt-3" style="background: rgba(139,26,26,0.1); border-color: var(--blood-red);">
+        <div class="card-body">
+            <p><strong>Title:</strong> @Model.Title</p>
+            <p><strong>Genre:</strong> @Model.Genre</p>
+            <p><strong>Year:</strong> @Model.Year</p>
+        </div>
+    </div>
+
+    <form asp-action="Delete" method="post" class="mt-4">
+        <input type="hidden" asp-for="Id" />
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-danger">☠️ Aye, Walk the Plank!</button>
+            <a asp-action="Index" class="btn btn-secondary">Nay, Turn Back!</a>
+        </div>
+    </form>
+</div>
+

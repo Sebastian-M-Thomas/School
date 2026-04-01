@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Spring2026_Project3_smthomas12.Models.Actor>
+
+@{
+    ViewData["Title"] = "The Crew";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>⚓ The Crew</h1>
+    <a asp-action="Create" class="btn btn-primary">
+        ➕ Recruit a Sailor
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle">
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>IMDB</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var actor in Model)
+            {
+                <tr>
+                    <td>
+                        @if (actor.Photo != null && actor.Photo.Length > 0)
+                        {
+                            <img src="data:image/*;base64,@Convert.ToBase64String(actor.Photo)"
+                                 alt="@actor.Name"
+                                 class="pirate-poster rounded-circle"
+                                 style="width: 60px; height: 60px; object-fit: cover;" />
+                        }
+                        else
+                        {
+                            <span style="color: var(--rope); font-size: 2rem;">⚓</span>
+                        }
+                    </td>
+                    <td style="font-family: var(--font-accent); font-size: 1.1rem; color: var(--gold);">
+                        @actor.Name
+                    </td>
+                    <td>@actor.Gender</td>
+                    <td>@actor.Age</td>
+                    <td>
+                        <a href="@actor.ImdbLink" target="_blank" rel="noopener"
+                           class="btn btn-outline-gold btn-sm">
+                            IMDB ↗
+                        </a>
+                    </td>
+                    <td>
+                        <div class="d-flex gap-1 flex-wrap">
+                            <a asp-action="Details" asp-route-id="@actor.Id" class="btn btn-info btn-sm">
+                                👁 View
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@actor.Id" class="btn btn-primary btn-sm">
+                                ✏️ Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@actor.Id" class="btn btn-danger btn-sm">
+                                🗑️ Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="text-center py-5">
+        <p style="font-family: var(--font-accent); font-size: 1.3rem; color: var(--rope);">
+            The crew quarters be empty, Captain. Recruit some sailors!
+        </p>
+        <a asp-action="Create" class="btn btn-primary btn-lg mt-2">➕ Recruit First Sailor</a>
+    </div>
+}
+

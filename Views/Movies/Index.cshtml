@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Spring2026_Project3_smthomas12.Models.Movie>
+
+@{
+    ViewData["Title"] = "The Treasure Chest";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>🎬 The Treasure Chest</h1>
+    <a asp-action="Create" class="btn btn-primary">
+        ➕ Log New Plunder
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle">
+        <thead>
+            <tr>
+                <th>Poster</th>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Year</th>
+                <th>IMDB</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model)
+            {
+                <tr>
+                    <td>
+                        @if (movie.Poster != null && movie.Poster.Length > 0)
+                        {
+                            <img src="data:image/*;base64,@Convert.ToBase64String(movie.Poster)"
+                                 alt="@movie.Title"
+                                 class="pirate-poster"
+                                 style="width: 60px; height: 80px; object-fit: cover;" />
+                        }
+                        else
+                        {
+                            <span style="color: var(--rope); font-size: 2rem;">🎬</span>
+                        }
+                    </td>
+                    <td style="font-family: var(--font-accent); font-size: 1.1rem; color: var(--gold);">
+                        @movie.Title
+                    </td>
+                    <td>@movie.Genre</td>
+                    <td>@movie.Year</td>
+                    <td>
+                        <a href="@movie.ImdbLink" target="_blank" rel="noopener"
+                           class="btn btn-outline-gold btn-sm">
+                            IMDB ↗
+                        </a>
+                    </td>
+                    <td>
+                        <div class="d-flex gap-1 flex-wrap">
+                            <a asp-action="Details" asp-route-id="@movie.Id" class="btn btn-info btn-sm">
+                                👁 View
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@movie.Id" class="btn btn-primary btn-sm">
+                                ✏️ Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@movie.Id" class="btn btn-danger btn-sm">
+                                🗑️ Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="text-center py-5">
+        <p style="font-family: var(--font-accent); font-size: 1.3rem; color: var(--rope);">
+            The treasure chest be empty, Captain. Log some plunder!
+        </p>
+        <a asp-action="Create" class="btn btn-primary btn-lg mt-2">➕ Add First Film</a>
+    </div>
+}

@@ -1,0 +1,68 @@
+﻿@model Spring2026_Project3_smthomas12.Models.Movie
+
+@{
+    ViewData["Title"] = "Edit " + Model.Title;
+}
+
+<div class="mb-3">
+    <a asp-action="Index" class="btn btn-secondary">← Back to Treasure Chest</a>
+</div>
+
+<div class="parchment mx-auto" style="max-width: 700px;">
+    <h2>✏️ Edit Film</h2>
+    <hr style="border-color: var(--wood-mid);" />
+
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="field-validation-error"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ImdbLink" class="form-label"></label>
+            <input asp-for="ImdbLink" class="form-control" />
+            <span asp-validation-for="ImdbLink" class="field-validation-error"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Genre" class="form-label"></label>
+            <input asp-for="Genre" class="form-control" />
+            <span asp-validation-for="Genre" class="field-validation-error"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Year" class="form-label"></label>
+            <input asp-for="Year" class="form-control" type="number" />
+            <span asp-validation-for="Year" class="field-validation-error"></span>
+        </div>
+
+        <div class="mb-3">
+            @if (Model.Poster != null && Model.Poster.Length > 0)
+            {
+                <p class="form-label">Current Poster</p>
+                <img src="data:image/*;base64,@Convert.ToBase64String(Model.Poster)"
+                     alt="Current poster"
+                     class="pirate-poster mb-2"
+                     style="height: 120px; object-fit: cover;" />
+            }
+            <label for="posterFile" class="form-label">
+                @(Model.Poster != null && Model.Poster.Length > 0 ? "Replace Poster (optional)" : "Poster Image")
+            </label>
+            <input type="file" name="posterFile" id="posterFile" class="form-control" accept="image/*" />
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">⚓ Save Changes</button>
+            <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

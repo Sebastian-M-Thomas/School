@@ -1,0 +1,44 @@
+﻿@model Spring2026_Project3_smthomas12.Models.Actor
+
+@{
+    ViewData["Title"] = "Delete " + Model.Name;
+}
+
+<div class="mb-3">
+    <a asp-action="Index" class="btn btn-secondary">← Back to the Crew</a>
+</div>
+
+<div class="parchment mx-auto" style="max-width: 600px; border: 2px solid var(--blood-red);">
+    <h2 style="color: var(--blood-red);">🗑️ Keelhaul This Sailor?</h2>
+    <hr style="border-color: var(--blood-red);" />
+
+    <p style="font-family: var(--font-accent); font-size: 1.1rem;">
+        Are ye sure ye want to remove <strong>@Model.Name</strong> from the crew?
+        All their ship assignments will be lost!
+    </p>
+
+    <div class="card mt-3" style="background: rgba(139,26,26,0.1); border-color: var(--blood-red);">
+        <div class="card-body d-flex align-items-center gap-3">
+            @if (Model.Photo != null && Model.Photo.Length > 0)
+            {
+                <img src="data:image/*;base64,@Convert.ToBase64String(Model.Photo)"
+                     alt="@Model.Name"
+                     class="pirate-poster rounded-circle"
+                     style="width: 70px; height: 70px; object-fit: cover;" />
+            }
+            <div>
+                <p class="mb-1"><strong>Name:</strong> @Model.Name</p>
+                <p class="mb-1"><strong>Gender:</strong> @Model.Gender</p>
+                <p class="mb-0"><strong>Age:</strong> @Model.Age</p>
+            </div>
+        </div>
+    </div>
+
+    <form asp-action="Delete" method="post" class="mt-4">
+        <input type="hidden" asp-for="Id" />
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-danger">☠️ Aye, Keelhaul 'Em!</button>
+            <a asp-action="Index" class="btn btn-secondary">Nay, Turn Back!</a>
+        </div>
+    </form>
+</div>

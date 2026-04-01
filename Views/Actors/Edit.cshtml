@@ -1,0 +1,75 @@
+﻿@model Spring2026_Project3_smthomas12.Models.Actor
+
+@{
+    ViewData["Title"] = "Edit " + Model.Name;
+}
+
+<div class="mb-3">
+    <a asp-action="Index" class="btn btn-secondary">← Back to the Crew</a>
+</div>
+
+<div class="parchment mx-auto" style="max-width: 700px;">
+    <h2>✏️ Edit Sailor</h2>
+    <hr style="border-color: var(--wood-mid);" />
+
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="field-validation-error"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Gender" class="form-label"></label>
+            <select asp-for="Gender" class="form-select">
+                <option value="">-- Select Gender --</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Non-binary">Non-binary</option>
+                <option value="Other">Other</option>
+            </select>
+            <span asp-validation-for="Gender" class="field-validation-error"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Age" class="form-label"></label>
+            <input asp-for="Age" class="form-control" type="number" />
+            <span asp-validation-for="Age" class="field-validation-error"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ImdbLink" class="form-label"></label>
+            <input asp-for="ImdbLink" class="form-control" />
+            <span asp-validation-for="ImdbLink" class="field-validation-error"></span>
+        </div>
+
+        <div class="mb-4">
+            @if (Model.Photo != null && Model.Photo.Length > 0)
+            {
+                <p class="form-label">Current Photo</p>
+                <img src="data:image/*;base64,@Convert.ToBase64String(Model.Photo)"
+                     alt="Current photo"
+                     class="pirate-poster rounded-circle mb-2"
+                     style="width: 100px; height: 100px; object-fit: cover;" />
+            }
+            <label for="photoFile" class="form-label">
+                @(Model.Photo != null && Model.Photo.Length > 0 ? "Replace Photo (optional)" : "Photo")
+            </label>
+            <input type="file" name="photoFile" id="photoFile" class="form-control" accept="image/*" />
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">⚓ Save Changes</button>
+            <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

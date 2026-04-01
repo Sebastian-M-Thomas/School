@@ -1,0 +1,127 @@
+﻿@model Spring2026_Project3_smthomas12.ViewModels.ActorDetailsViewModel
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="mb-3">
+    <a asp-action="Index" class="btn btn-secondary">
+        ← Back to the Crew
+    </a>
+</div>
+
+<!-- ═══ ACTOR INFO ════════════════════════════════════════════════════ -->
+<div class="row g-4 mb-4">
+
+    @if (Model.Photo.Length > 0)
+    {
+        <div class="col-md-3 text-center">
+            <img src="data:image/*;base64,@Convert.ToBase64String(Model.Photo)"
+                 alt="@Model.Name"
+                 class="pirate-poster img-fluid rounded-circle"
+                 style="max-height: 300px; max-width: 300px; object-fit: cover;" />
+        </div>
+    }
+
+    <div class="@(Model.Photo.Length > 0 ? "col-md-9" : "col-12")">
+        <div class="parchment h-100">
+            <h1>@Model.Name</h1>
+            <hr style="border-color: var(--wood-mid);" />
+
+            <p><strong>⚓ Gender:</strong> @Model.Gender</p>
+            <p><strong>🎂 Age:</strong> @Model.Age</p>
+            <p>
+                <strong>🔗 IMDB:</strong>
+                <a href="@Model.ImdbLink" target="_blank" rel="noopener">
+                    View on IMDB ↗
+                </a>
+            </p>
+
+            <hr style="border-color: var(--wood-mid);" />
+            <h3>🎬 Ships Sailed</h3>
+            @if (Model.MovieTitles.Any())
+            {
+                <ul class="treasure-list">
+                    @foreach (var title in Model.MovieTitles)
+                    {
+                        <li>@title</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p class="fst-italic">This sailor hasn't boarded any vessel yet.</p>
+            }
+        </div>
+    </div>
+</div>
+
+<hr class="divider-gold" />
+
+<!-- ═══ AI TWEETS + SENTIMENT ════════════════════════════════════════ -->
+<section>
+    <h2>🦜 Scuttlebutt from the Twitter Crow's Nest</h2>
+    <p class="fst-italic" style="color: var(--parchment-dark); font-family: var(--font-accent);">
+        Ten dispatches intercepted from the social seas — what the masses say about this sailor.
+    </p>
+
+    <!-- Average Sentiment Banner -->
+    <div class="sentiment-banner mb-4">
+        <div class="text-gold" style="font-family: var(--font-accent); font-size: 1rem;">
+            Overall Public Sentiment
+        </div>
+        <div class="sentiment-score">
+            <span class="@Model.AverageSentimentCss" style="font-size: 1.8rem; padding: 0.4rem 1.2rem;">
+                @Model.AverageSentimentLabel
+            </span>
+        </div>
+        <div style="color: var(--parchment-dark); font-family: var(--font-accent); font-size: 0.9rem; margin-top: 0.4rem;">
+            Average Compound Score: @Model.AverageSentiment.ToString("F3")
+        </div>
+    </div>
+
+    <!-- Tweets Table -->
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th style="width: 70%;">🦜 Tweet</th>
+                    <th style="width: 30%;">🔮 Sentiment</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tweet in Model.Tweets)
+                {
+                    <tr>
+                        <td style="font-family: var(--font-body); color: var(--parchment-dark);">
+                            @tweet.Text
+                        </td>
+                        <td>
+                            <span class="@tweet.CssClass">
+                                @tweet.Label
+                            </span>
+                            <div style="font-size: 0.8rem; color: var(--rope); margin-top: 0.2rem;">
+                                Score: @tweet.Compound.ToString("F3")
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<hr class="divider-gold" />
+
+<!-- ═══ ACTIONS ════════════════════════════════════════════════════════ -->
+<div class="d-flex gap-2 flex-wrap">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+        ✏️ Edit Sailor
+    </a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+        🗑️ Walk the Plank
+    </a>
+    <a asp-action="Index" class="btn btn-secondary">
+        ← Back to Crew
+    </a>
+</div>
